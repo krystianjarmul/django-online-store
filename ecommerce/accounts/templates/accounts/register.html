@@ -54,18 +54,20 @@
 
             </div>
         </div>
-        {% if form.errors %}
-                    <div>
-                        {% for field in form %}
-                            {% for error in field.errors %}
-                                <div class="alert alert-danger">
-                                    <strong>{{ error|escape }}</strong>
-                                </div>
-                            {% endfor %}
-                        {% endfor %}
 
-                    </div>
-                    {% endif %}
     </div>
+    {% if form.errors %}
+    <div class="row justify-content-center">
+        <div class="col-6">
+            {% for field in form %}
+                {% for error in field.errors %}
+                    <div class="row alert alert-danger">
+                        <strong>{{ error|escape }}</strong>
+                    </div>
+                {% endfor %}
+            {% endfor %}
+        </div>
+    </div>
+    {% endif %}
 </div>
 {% endblock %}
