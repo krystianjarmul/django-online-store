@@ -11,10 +11,6 @@
     overflow: hidden;
 }
 
-.logo {
-    display:flex;
-}
-
 figure {
     width: 200px;
     overflow: hidden;
