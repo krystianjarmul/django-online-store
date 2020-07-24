@@ -1,0 +1,37 @@
+{% load static %}
+
+<nav class="navbar navbar-light bg-light justify-content-space-between">
+    <input class="form-control col-2" type="text" placeholder="Search" aria-label="Search">
+
+    <a class="navbar-brand" href="#">
+        <figure>
+            <img src="{% static 'images/logo1.png' %}" class="d-inline-block align-top logo" alt="">
+        </figure>
+    </a>
+    <ul class="nav">
+        <li class="nav-item">
+            <a class="nav-link active" href="{% url 'register' %}">Register</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="{% url 'login' %}">Login</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="#">Cart</a>
+        </li>
+    </ul>
+
+</nav>
+<hr>
+<nav class="navbar navbar-light bg-light justify-content-center">
+    <ul class="nav">
+        <li class="nav-item">
+            <a class="nav-link active" href="#">Category1</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="#">Category2</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="#">Category3</a>
+        </li>
+    </ul>
+</nav>
