@@ -4,13 +4,13 @@
 {% block content %}
 
 
-<div class="container mt-5 mb-5">
-    <div class="row justify-content-center">
+<div class="container">
+    <div class="row centered justify-content-center">
         <div class="col-8 text-center">
             {% for message in messages %}
             <p class="alert alert-secondary">{{ message }}</p>
             {% endfor %}
-            <h1>Sign In</h1>
+            <h1 class="text">Sign In</h1>
             <div class="row justify-content-center">
                 <form method="POST">
                     {% csrf_token %}
@@ -32,7 +32,7 @@
                         </div>
                     </div>
 
-                    <input class="btn btn-sm btn-primary col-12" type="submit"
+                    <input class="btn btn-sm my-btn col-12" type="submit"
                            value="Submit">
                 </form>
             </div>

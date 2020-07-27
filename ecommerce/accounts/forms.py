@@ -19,6 +19,3 @@ class RegistrationForm(UserCreationForm):
             'username': TextInput(attrs={'placeholder': 'Username'}),
             'email': TextInput(attrs={'placeholder': 'Email'}),
         }
-
-class LoginForm():
-    pass
