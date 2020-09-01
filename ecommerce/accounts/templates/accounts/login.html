@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+
+<div class="container col-md-10">
+    <div class="row centered justify-content-center">
+        <div class="col-8 text-center">
+
+            <h1 class="text">Sign In</h1>
+            <div class="row justify-content-center">
+                <form method="POST">
+                    {% csrf_token %}
+                    <div class="input-group">
+                        <div class="input-group-append">
+                            <div class="input-group-text icon-field rounded">
+                                <span class="fa fa-user"></span>
+                            </div>
+                            <input type="text" placeholder="Username" name="username">
+                        </div>
+                    </div>
+
+                    <div class="input-group">
+                        <div class="input-group-append">
+                            <div class="input-group-text icon-field rounded">
+                                <span class="fa fa-key"></span>
+                            </div>
+                            <input type="password" placeholder="Password" name="password">
+                        </div>
+                    </div>
+
+                    <input class="btn btn-sm my-btn col-12" type="submit"
+                           value="Submit">
+                </form>
+            </div>
+            <p>No account? <a href="{% url 'register' %}">Create one!</a></p>
+             {% for message in messages %}
+            <p class="alert alert-secondary">{{ message }}</p>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+
+{% endblock %}

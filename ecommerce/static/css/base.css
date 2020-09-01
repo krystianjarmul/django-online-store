@@ -1,0 +1,102 @@
+h1 {
+    color: white;
+}
+
+p {
+    color: white;
+}
+
+.footer {
+    background-color: black;
+    position: relative;
+    bottom: 0;
+    left: 0;
+    height: 80px;
+    width: 100%;
+    padding-top: 20px;
+}
+
+html, body {
+    background-color: #222629;
+    height: 100%;
+}
+
+figure {
+    width: 100px;
+    overflow: hidden;
+    margin: -5px;
+    /*display: flex;*/
+    transform: translateX(10px);
+
+}
+
+figure img {
+    display: block;
+    width: 100%;
+    margin: -20% 0;
+}
+
+.my-btn {
+    background-color: #86C232;
+}
+
+.my-btn:hover {
+    background-color: #61892F;
+}
+
+a {
+    color: #86C232;
+}
+
+a:hover {
+    color: #61892F;
+}
+
+.my-component {
+    background-color: rgba(0, 0, 0, 0.3);
+
+}
+
+.flexbox {
+    justify-content: space-between;
+    margin: auto;
+}
+
+.flex-item {
+    /*background-color: orangered;*/
+    width: 400px;
+    text-align: center;
+
+}
+
+.text-white {
+    color: white;
+}
+
+.container {
+    vertical-align: middle;
+    margin-top: 100px;
+    margin-bottom: 100px;
+    min-height: 45%;
+}
+
+textarea, input {
+  padding:10px;
+	font-family: FontAwesome, "Open Sans", Verdana, sans-serif;
+    font-style: normal;
+    font-weight: normal;
+    text-decoration: inherit;
+}
+
+.nav-item:hover {
+    /*background-color: rgba(0, 0, 0, 0.2);*/
+
+}
+
+.card {
+    background-color: #474B4F;
+}
+
+hr {
+    background-color: #6B6E70;
+}
