@@ -1,6 +1,6 @@
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
-from django.forms import TextInput, PasswordInput
+from django.forms import TextInput, PasswordInput, ModelForm
 
 
 class RegistrationForm(UserCreationForm):
@@ -19,3 +19,6 @@ class RegistrationForm(UserCreationForm):
             'username': TextInput(attrs={'placeholder': 'Username'}),
             'email': TextInput(attrs={'placeholder': 'Email'}),
         }
+
+class CreateProfile(ModelForm):
+    pass

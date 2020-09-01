@@ -1,10 +1,9 @@
-from django.http import HttpResponse
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth.models import User
 from django.contrib import messages
 
 from .forms import RegistrationForm
-
 
 def register_page(request):
     form = RegistrationForm()
@@ -46,4 +45,11 @@ def logout_page(request):
 
 
 def index(request):
-    return render(request, 'base.html')
+    return render(request, 'index.html')
+
+
+def profile_page(request, pk):
+    user = User.objects.get(id=pk)
+    context = {"user": user}
+
+    return render(request, 'accounts/profile.html', context)
