@@ -4,15 +4,22 @@
     margin-top: 30px;
 }
 
+.cart-box {
+    display: flex;
+    margin-top: 10px;
+    vertical-align: middle;
+}
+
 .box-element {
     background-color: rgba(0, 0, 0, 0.3);
     padding: 10px;
     color: white;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.6), 0 6px 10px 0 rgba(0, 0, 0, 0.1);
 }
+
 .box-element > hr {
     background-color: #222629;
     height: 1px;
-
 }
 
 .product {
@@ -23,8 +30,14 @@
     border-color: #86C232;
     color: #86C232;
 }
-.view-btn:hover{
+
+.view-btn:hover {
     background-color: #86C232;
     /*border-color: #fff;*/
     color: #fff;
+}
+
+.cart-img {
+    height: 100px;
+    width: 200px;
 }
