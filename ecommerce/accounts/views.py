@@ -44,10 +44,6 @@ def logout_page(request):
     return redirect('login')
 
 
-def index(request):
-    return render(request, 'index.html')
-
-
 def profile_page(request, pk):
     user = User.objects.get(id=pk)
     context = {"user": user}

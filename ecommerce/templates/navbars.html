@@ -1,12 +1,9 @@
 {% load static %}
 
-<nav class="navbar my-component flexbox">
-    <div class="flex-item">
-        <input class="form-control" type="text" placeholder="&#xf002; Search"
-               aria-label="Search">
+<div class="navbar navbar-expand-sm my-component">
+    <div class="col-md-4">
     </div>
-
-    <div class="flex-item">
+    <div class="col-md-4 text-center">
         <a class="navbar-brand" href="{% url 'home' %}">
             <figure>
                 <img src="{% static 'images/logo.png' %}"
@@ -14,17 +11,27 @@
             </figure>
         </a>
     </div>
-    <div class="flex-item">
-        <ul class="nav justify-content-end">
+    <!--    <button class="justify-content-end navbar-toggler" type="button"-->
+    <!--            data-toggle="collapse"-->
+    <!--            data-target="#navbarSupportedContent">-->
+    <!--        <i id="toggler-icon" class="fas fa-bars"></i>-->
+    <!--    </button>-->
+    <div class="col-md-4">
+
+        <!--        <div class="collapse navbar-collapse justify-content-end"-->
+        <!--             id="navbarSupportedContent">-->
+        <ul class="nav justify-content-end" id="list">
             {% if request.user.is_authenticated %}
             <li class="nav-item">
                 <a class="nav-link text-white">Hello, {{ request.user }}</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link active" href="{% url 'profile' request.user.id %}">Profile</a>
+                <a class="nav-link active"
+                   href="{% url 'profile' request.user.id %}">Profile</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link active" href="{% url 'logout' %}">Logout</a>
+                <a class="nav-link active"
+                   href="{% url 'logout' %}">Logout</a>
             </li>
             {% else %}
             <li class="nav-item">
@@ -36,10 +43,13 @@
             </li>
             {% endif %}
             <li class="nav-item">
-                <a class="nav-link" href="#">Cart</a>
+                <a class="nav-link" href="{% url 'cart' %}">Cart</a>
             </li>
         </ul>
+        <!--        </div>-->
     </div>
+
+</div>
 
 
 </nav>
@@ -47,13 +57,10 @@
 <nav class="navbar my-component justify-content-center">
     <ul class="nav">
         <li class="nav-item rounded">
-            <a class="nav-link active" href="#">Category1</a>
+            <a class="nav-link active" href="{% url 'store' %}">Products</a>
         </li>
         <li class="nav-item rounded">
-            <a class="nav-link" href="#">Category2</a>
-        </li>
-        <li class="nav-item rounded">
-            <a class="nav-link" href="#">Category3</a>
+            <a class="nav-link" href="{% url 'checkout' %}">Checkout</a>
         </li>
     </ul>
 </nav>
