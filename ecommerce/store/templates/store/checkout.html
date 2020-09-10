@@ -3,6 +3,71 @@
 
 {% block content %}
 <div class="container">
-    <p>checkout</p>
+    <div class="row">
+        <div class="col-lg-6">
+            <div class="box-element" id="form-wrapper">
+                <form id="form">
+                    <div class="user-info row">
+                        <div class="col-md-6">
+                            <input required class="form-control" type="text"
+                                   placeholder="Name...">
+                        </div>
+                        <div class="col-md-6">
+                            <input required class="form-control" type="text"
+                                   placeholder="Email...">
+                        </div>
+                    </div>
+
+                    <hr>
+
+                    <h6>
+                        Shopping information:
+                    </h6>
+
+                    <div class="row shopping-info">
+
+                        <div class="form-field col-md-6">
+                            <input required class="form-control" type="text"
+                                   placeholder="Address...">
+                        </div>
+                        <div class="form-field col-md-6">
+                            <input required class="form-control" type="text"
+                                   placeholder="City...">
+                        </div>
+                        <div class="form-field col-md-6">
+                            <input required class="form-control" type="text"
+                                   placeholder="Zip code...">
+                        </div>
+                        <div class="form-field col-md-6">
+                            <input required class="form-control" type="text"
+                                   placeholder="Country...">
+                        </div>
+                    </div>
+                    <hr/>
+                    <input type="submit" value="Continue"
+                           class="btn my-btn btn-block">
+                </form>
+
+            </div>
+        </div>
+
+        <div class="col-lg-6">
+            <div class="box-element">
+                <a class="btn view-btn" href="{% url 'cart' %}">&#x2190; Back to
+                    Cart</a>
+                <hr>
+                <h4>Order Summary:</h4>
+                <div class="cart-box">
+                    <div style="flex: 2"><img class="cart-img" src="{% static 'images/default_image.png' %}"></div>
+                    <div style="flex: 2">Product 1</div>
+                    <div style="flex: 1;">$20</div>
+                    <div style="flex: 1;">x3</div>
+                </div>
+                <hr>
+                <h5>Items:  3</h5>
+                <h5>Total:  60$</h5>
+            </div>
+        </div>
+    </div>
 </div>
 {% endblock %}

@@ -22,6 +22,11 @@
     height: 1px;
 }
 
+.box-element form hr {
+    background-color: #222629;
+    height: 1px;
+}
+
 .product {
     border-radius: 0 0 4px 4px;
 }
@@ -38,6 +43,10 @@
 }
 
 .cart-img {
-    height: 100px;
-    width: 200px;
+    height: 50px;
+    width: 100px;
+}
+
+.form-field {
+    margin-bottom: 5px;
 }
