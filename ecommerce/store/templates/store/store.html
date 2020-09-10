@@ -8,7 +8,7 @@
         {% for product in products %}
         <div class="col-md-4">
             <img class="thumbnail"
-                 src="{% static 'images/default_image.png' %}">
+                 src="{{ product.image_url }}">
 
             <div class="box-element product">
                 <h6><strong>{{ product.name }}</strong></h6>
