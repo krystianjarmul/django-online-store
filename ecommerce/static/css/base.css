@@ -17,7 +17,8 @@ p {
 }
 
 html, body {
-    background-color: #222629;
+    background-color: #33373A;
+    /*background-color: #222629;*/
     height: 100%;
 }
 
@@ -86,5 +87,7 @@ textarea, input {
 }
 
 hr {
-    background-color: #6B6E70;
+    /*background-color: #6B6E70;*/
+    background-color: #33373A;
+
 }

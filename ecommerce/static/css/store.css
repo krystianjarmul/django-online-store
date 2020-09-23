@@ -50,3 +50,8 @@
 .form-field {
     margin-bottom: 5px;
 }
+
+.quantity{
+	display: inline-block;
+	font-weight: 700;
+}
