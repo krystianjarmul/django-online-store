@@ -1,6 +1,6 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 
-from .models import Product, Order
+from .models import Product, Order, OrderItem
 
 
 def home(request):
@@ -38,3 +38,18 @@ def checkout(request):
 
     context = {'items': items, 'order': order}
     return render(request, 'store/checkout.html', context)
+
+def update_cart(request, id):
+
+    if not request.user.is_authenticated:
+        return redirect('store')
+
+    customer = request.user.customer
+    order = customer.order_set.first()
+    product = Product.objects.get(pk=id)
+    item = OrderItem(order=order, quantity=1, product=product)
+    item.save()
+    return redirect('store')
+
+
+
