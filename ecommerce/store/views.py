@@ -51,5 +51,12 @@ def update_cart(request, id):
     item.save()
     return redirect('store')
 
+def add_item(request, id):
+    pass
+
+def remove_item(request, id):
+    # if orderitem.quantity = 0: orderitem.delete()
+    pass
+
 
 

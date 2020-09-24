@@ -3,13 +3,19 @@ from django.db.models.signals import post_save
 from django.dispatch import receiver
 
 from .models import Profile
+from store.models import Customer
 
 
-@receiver(post_save, sender=User)
-def user_profile(sender, instance, created, **kwargs):
-
+@receiver(post_save, sender=User, dispatch_uid='save_new_user_profile')
+def save_profile(sender, instance, created, **kwargs):
+    user = instance
     if created:
-        Profile.objects.create(
-            user=instance
-        )
-        print(f'profile created for {instance.username}')
+        profile = Profile(user=user)
+        profile.save()
+
+@receiver(post_save, sender=User, dispatch_uid='save_new_customer')
+def save_customer(sender, instance, created, **kwargs):
+    user = instance
+    if created:
+        customer = Customer(user=user)
+        customer.save()
