@@ -47,8 +47,15 @@ def update_cart(request, id):
     customer = request.user.customer
     order = customer.order_set.first()
     product = Product.objects.get(pk=id)
-    item = OrderItem(order=order, quantity=1, product=product)
-    item.save()
+    if product.orderitem_set.first() not in order.orderitem_set.all():
+        item = OrderItem(order=order, quantity=1, product=product)
+        item.save()
+
+    else:
+        item = OrderItem.objects.get(order=order, product=product)
+        item.quantity += 1
+        item.save()
+
     return redirect('store')
 
 def add_item(request, id):
