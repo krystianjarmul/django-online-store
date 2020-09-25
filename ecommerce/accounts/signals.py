@@ -17,5 +17,5 @@ def save_profile(sender, instance, created, **kwargs):
 def save_customer(sender, instance, created, **kwargs):
     user = instance
     if created:
-        customer = Customer(user=user)
+        customer = Customer(user=user, name=user.username)
         customer.save()
