@@ -38,10 +38,9 @@
                     <div style="flex: 2;">${{ item.product.price|floatformat:2 }}</div>
                     <div style="flex: 2;">
                         <div class="row quantity">
-                            <button data-product="{{ item.product.id }}" data-action="sub" class="btn btn-sm btn-secondary update-cart">-</button>
+                            <a data-product="{{ item.product.id }}" data-action="sub" class="btn btn-sm btn-secondary update-cart" href="{% url 'remove_item' item.product.id %}">-</a>
                             <strong class="col-6">{{ item.quantity }}</strong>
-                            <button data-product="{{ item.product.id }}" data-action="add" class="btn btn-sm btn-secondary col-3 update-cart">+
-                            </button>
+                            <a data-product="{{ item.product.id }}" data-action="add" class="btn btn-sm btn-secondary col-3 update-cart" href="{% url 'add_item' item.product.id %}">+</a>
                         </div>
                     </div>
                     <div style="flex: 1;">${{ item.get_total|floatformat:2 }}</div>

@@ -40,17 +40,16 @@ def checkout(request):
     return render(request, 'store/checkout.html', context)
 
 def update_cart(request, id):
-
     if not request.user.is_authenticated:
         return redirect('store')
 
     customer = request.user.customer
     order = customer.order_set.first()
     product = Product.objects.get(pk=id)
+
     if product.orderitem_set.first() not in order.orderitem_set.all():
         item = OrderItem(order=order, quantity=1, product=product)
         item.save()
-
     else:
         item = OrderItem.objects.get(order=order, product=product)
         item.quantity += 1
@@ -59,11 +58,34 @@ def update_cart(request, id):
     return redirect('store')
 
 def add_item(request, id):
-    pass
+    if not request.user.is_authenticated:
+        return redirect('cart')
+
+    customer = request.user.customer
+    order = customer.order_set.first()
+    product = Product.objects.get(pk=id)
+    item = OrderItem.objects.get(order=order, product=product)
+    item.quantity += 1
+    item.save()
+
+    return redirect('cart')
 
 def remove_item(request, id):
-    # if orderitem.quantity = 0: orderitem.delete()
-    pass
+    if not request.user.is_authenticated:
+        return redirect('cart')
+
+    customer = request.user.customer
+    order = customer.order_set.first()
+    product = Product.objects.get(pk=id)
+    item = OrderItem.objects.get(order=order, product=product)
+    item.quantity -= 1
+
+    if item.quantity == 0:
+        item.delete()
+    else:
+        item.save()
+
+    return redirect('cart')
 
 
 
