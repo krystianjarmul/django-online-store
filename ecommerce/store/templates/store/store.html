@@ -4,41 +4,24 @@
 {% block content %}
 <div class="container">
     <div class="row">
-        <div class="col-md-4">
+
+        {% for product in products %}
+        <div class="col-lg-4">
             <img class="thumbnail"
-                 src="{% static 'images/default_image.png' %}">
+                 src="{{ product.image_url }}">
 
             <div class="box-element product">
-                <h6><strong>Product</strong></h6>
+                <h6><strong>{{ product.name }}</strong></h6>
                 <hr>
-                <button class="btn btn-outline-secondary">Add to cart</button>
+
+                <a href="{% url 'update_cart' product.id %}" data-product="{{product.id}}" data-action="add" class="btn btn-outline-secondary update-cart">Add to cart</a>
+
                 <button class="btn view-btn">View</button>
-                <h4 style="display: inline-block; float: right">$20</h4>
+                <h4 style="display: inline-block; float: right">${{ product.price }}</h4>
             </div>
         </div>
-        <div class="col-md-4">
-            <img class="thumbnail"
-                 src="{% static 'images/default_image.png' %}">
-            <div class="box-element product">
-                <h6><strong>Product</strong></h6>
-                <hr>
-                <button class="btn btn-outline-secondary">Add to cart</button>
-                <button class="btn view-btn">View</button>
-                <h4 style="display: inline-block; float: right">$20</h4>
-            </div>
-        </div>
-        <div class="col-md-4">
-            <img class="thumbnail"
-                 src="{% static 'images/default_image.png' %}">
-            <div class="box-element product">
-                <h6><strong>Product</strong></h6>
-                <hr>
-                <button class="btn btn-outline-secondary">Add to cart
-                </button>
-                <button class="btn view-btn">View</button>
-                <h4 style="display: inline-block; float: right">$20</h4>
-            </div>
-        </div>
+        {% endfor %}
+
     </div>
 </div>
 {% endblock %}
