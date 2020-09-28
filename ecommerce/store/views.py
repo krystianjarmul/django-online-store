@@ -1,4 +1,3 @@
-from django.http import HttpResponse
 from django.shortcuts import render, redirect
 
 from .models import Product, Order, OrderItem
@@ -16,6 +15,10 @@ def cart(request):
                                                      complete=False)
         items = order.orderitem_set.all()
     else:
+
+        if not request.session.get('cart'):
+            request.session['cart'] = {}
+
         cart = request.session.get('cart', {})
         items = [OrderItem(product=Product.objects.get(pk=int(id)),
                            quantity=quantity) for id, quantity in cart.items()]
@@ -29,7 +32,6 @@ def cart(request):
 
 
 def store(request):
-    request.session.modified = True
     products = Product.objects.all()
     context = {'products': products}
 
@@ -56,11 +58,11 @@ def checkout(request):
 
 def update_cart(request, id):
     if not request.user.is_authenticated:
+        request.session.modified = True
         if not request.session.get('cart'):
             request.session['cart'] = {}
 
         if str(id) not in request.session.get('cart', {}):
-
             request.session['cart'][str(id)] = 1
         else:
             request.session['cart'][str(id)] += 1
@@ -84,6 +86,12 @@ def update_cart(request, id):
 
 def add_item(request, id):
     if not request.user.is_authenticated:
+        request.session.modified = True
+        if not request.session.get('cart'):
+            request.session['cart'] = {}
+
+        request.session['cart'][str(id)] += 1
+
         return redirect('cart')
 
     customer = request.user.customer
@@ -98,6 +106,15 @@ def add_item(request, id):
 
 def remove_item(request, id):
     if not request.user.is_authenticated:
+        request.session.modified = True
+        if not request.session.get('cart'):
+            request.session['cart'] = {}
+
+        request.session['cart'][str(id)] -= 1
+
+        if request.session['cart'][str(id)] == 0:
+            del request.session['cart'][str(id)]
+
         return redirect('cart')
 
     customer = request.user.customer
