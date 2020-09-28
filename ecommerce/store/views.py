@@ -46,7 +46,6 @@ def checkout(request):
                                                      complete=False)
         items = order.orderitem_set.all()
     else:
-
         if not request.session.get('cart'):
             request.session['cart'] = {}
 

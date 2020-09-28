@@ -1,9 +1,11 @@
+from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import User
 from django.contrib import messages
 
 from .forms import RegistrationForm
+
 
 def register_page(request):
     form = RegistrationForm()
@@ -38,12 +40,12 @@ def login_page(request):
 
     return render(request, 'accounts/login.html')
 
-
+@login_required()
 def logout_page(request):
     logout(request)
     return redirect('login')
 
-
+@login_required()
 def profile_page(request, pk):
     user = User.objects.get(id=pk)
     context = {"user": user}

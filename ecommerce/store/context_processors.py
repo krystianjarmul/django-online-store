@@ -1,4 +1,4 @@
-from store.models import OrderItem, Product
+from store.models import OrderItem, Product, Order
 
 
 def products_in_cart(request):
@@ -11,6 +11,7 @@ def products_in_cart(request):
         return {'products_in_cart': cart_items}
 
     customer = request.user.customer
-    order = customer.order_set.first()
+    order, created = Order.objects.get_or_create(customer=customer,
+                                                 complete=False)
 
     return {'products_in_cart': order.get_cart_items}
