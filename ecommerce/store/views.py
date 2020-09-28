@@ -39,18 +39,24 @@ def store(request):
 
 
 def checkout(request):
-    if 'cart' in request.session:
-        del request.session['cart']
 
     if request.user.is_authenticated:
-
         customer = request.user.customer
         order, created = Order.objects.get_or_create(customer=customer,
                                                      complete=False)
         items = order.orderitem_set.all()
     else:
-        items = []
-        order = {'get_cart_items': 0, 'get_cart_total': 0}
+
+        if not request.session.get('cart'):
+            request.session['cart'] = {}
+
+        cart = request.session.get('cart', {})
+        items = [OrderItem(product=Product.objects.get(pk=int(id)),
+                           quantity=quantity) for id, quantity in cart.items()]
+        cart_items = sum([item.quantity for item in items])
+        cart_total = sum([item.product.price * item.quantity for item in items])
+
+        order = {'get_cart_items': cart_items, 'get_cart_total': cart_total}
 
     context = {'items': items, 'order': order}
     return render(request, 'store/checkout.html', context)
