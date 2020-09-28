@@ -1,3 +1,4 @@
+from django.http import HttpResponse
 from django.shortcuts import render, redirect
 
 from .models import Product, Order, OrderItem
@@ -7,6 +8,7 @@ def home(request):
     context = {}
     return render(request, 'store/main.html', context)
 
+
 def cart(request):
     if request.user.is_authenticated:
         customer = request.user.customer
@@ -14,20 +16,32 @@ def cart(request):
                                                      complete=False)
         items = order.orderitem_set.all()
     else:
-        items = []
-        order = {'get_cart_items': 0, 'get_cart_total': 0}
+        cart = request.session.get('cart', {})
+        items = [OrderItem(product=Product.objects.get(pk=int(id)),
+                           quantity=quantity) for id, quantity in cart.items()]
+        cart_items = sum([item.quantity for item in items])
+        cart_total = sum([item.product.price * item.quantity for item in items])
+
+        order = {'get_cart_items': cart_items, 'get_cart_total': cart_total}
 
     context = {'items': items, 'order': order}
     return render(request, 'store/cart.html', context)
 
+
 def store(request):
+    request.session.modified = True
     products = Product.objects.all()
     context = {'products': products}
 
     return render(request, 'store/store.html', context)
 
+
 def checkout(request):
+    if 'cart' in request.session:
+        del request.session['cart']
+
     if request.user.is_authenticated:
+
         customer = request.user.customer
         order, created = Order.objects.get_or_create(customer=customer,
                                                      complete=False)
@@ -39,8 +53,18 @@ def checkout(request):
     context = {'items': items, 'order': order}
     return render(request, 'store/checkout.html', context)
 
+
 def update_cart(request, id):
     if not request.user.is_authenticated:
+        if not request.session.get('cart'):
+            request.session['cart'] = {}
+
+        if str(id) not in request.session.get('cart', {}):
+
+            request.session['cart'][str(id)] = 1
+        else:
+            request.session['cart'][str(id)] += 1
+
         return redirect('store')
 
     customer = request.user.customer
@@ -57,6 +81,7 @@ def update_cart(request, id):
 
     return redirect('store')
 
+
 def add_item(request, id):
     if not request.user.is_authenticated:
         return redirect('cart')
@@ -69,6 +94,7 @@ def add_item(request, id):
     item.save()
 
     return redirect('cart')
+
 
 def remove_item(request, id):
     if not request.user.is_authenticated:
@@ -86,6 +112,3 @@ def remove_item(request, id):
         item.save()
 
     return redirect('cart')
-
-
-
