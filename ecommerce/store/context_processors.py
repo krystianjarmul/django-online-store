@@ -11,7 +11,10 @@ def products_in_cart(request):
         return {'products_in_cart': cart_items}
 
     customer = request.user.customer
-    order, created = Order.objects.get_or_create(customer=customer,
-                                                 complete=False)
+    try:
+        order, created = Order.objects.get_or_create(customer=customer,
+                                                     complete=False)
+    except:
+        order = Order.objects.filter(customer=customer, complete=False)[0]
 
     return {'products_in_cart': order.get_cart_items}
