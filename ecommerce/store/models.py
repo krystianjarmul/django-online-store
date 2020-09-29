@@ -34,7 +34,6 @@ class Order(models.Model):
     customer = models.ForeignKey(Customer, on_delete=models.SET_NULL, null=True, blank=True)
     date_ordered = models.DateTimeField(auto_now_add=True)
     complete = models.BooleanField(default=False, null=True, blank=True)
-    # transaction_id = models.CharField(max_length=200, null=True, blank=True)
     transaction_id = models.UUIDField(default=uuid.uuid4, editable=True)
 
     def __str__(self):
@@ -59,8 +58,8 @@ class OrderItem(models.Model):
     quantity = models.IntegerField(default=0, null=True, blank=True)
     date_added = models.DateTimeField(auto_now_add=True)
 
-    # def __str__(self):
-    #     return 'OrderItem-{}'.format(self.product.name)
+    def __str__(self):
+        return '{}-{}'.format(self.order.transaction_id, self.product.name)
 
     @property
     def get_total(self):

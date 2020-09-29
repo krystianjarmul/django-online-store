@@ -40,7 +40,8 @@ def login_page(request):
                 return redirect("home")
 
             cart = request.session.get('cart', {})
-            order, craeted = Order.objects.get_or_create(customer=user.customer, complete=False)
+            order, craeted = Order.objects.get_or_create(customer=user.customer,
+                                                         complete=False)
 
             for id, quantity in cart.items():
                 product = Product.objects.get(pk=id)
