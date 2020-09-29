@@ -28,6 +28,7 @@ def cart(request):
         order = {'get_cart_items': cart_items, 'get_cart_total': cart_total}
 
     context = {'items': items, 'order': order}
+
     return render(request, 'store/cart.html', context)
 
 
@@ -57,6 +58,7 @@ def checkout(request):
         order = {'get_cart_items': cart_items, 'get_cart_total': cart_total}
 
     context = {'items': items, 'order': order}
+
     return render(request, 'store/checkout.html', context)
 
 
@@ -91,6 +93,7 @@ def update_cart(request, id):
 def add_item(request, id):
     if not request.user.is_authenticated:
         request.session.modified = True
+
         if not request.session.get('cart'):
             request.session['cart'] = {}
 
@@ -101,6 +104,7 @@ def add_item(request, id):
     customer = request.user.customer
     order = customer.order_set.first()
     product = Product.objects.get(pk=id)
+
     item = OrderItem.objects.get(order=order, product=product)
     item.quantity += 1
     item.save()
@@ -111,6 +115,7 @@ def add_item(request, id):
 def remove_item(request, id):
     if not request.user.is_authenticated:
         request.session.modified = True
+
         if not request.session.get('cart'):
             request.session['cart'] = {}
 
@@ -124,6 +129,7 @@ def remove_item(request, id):
     customer = request.user.customer
     order = customer.order_set.first()
     product = Product.objects.get(pk=id)
+
     item = OrderItem.objects.get(order=order, product=product)
     item.quantity -= 1
 
