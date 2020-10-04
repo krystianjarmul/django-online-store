@@ -55,3 +55,26 @@
 	display: inline-block;
 	font-weight: 700;
 }
+
+.pagination > li > a
+{
+    background-color: white;
+    color: #86C232;
+}
+
+.pagination > .active > a
+{
+    color: white;
+    background-color: #86C232 !Important;
+    border: solid 1px #86C232 !Important;
+}
+
+.pagination > li > a:hover
+{
+    color: #86C232;
+}
+
+.page-link {
+    background-color: #222629 !Important;
+    border: solid 1px #222629 !Important;
+}
