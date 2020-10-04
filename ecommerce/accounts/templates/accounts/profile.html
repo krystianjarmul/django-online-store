@@ -3,23 +3,12 @@
 
 {% block content %}
 
-<div class="container col-md-10">
-    <div class="row">
+<div class="container">
+    <div class="row" style="padding-top: 20px">
         <div class="col-md-4">
 
             <div class="card text-center">
-                <a href="{% url 'home' %}">
-                    <button class="btn col-11 btn-lg my-btn back-btn">
-                        <span class="fa fa-arrow-left"></span> Back to the store
-                    </button>
-                </a>
-                <hr>
-                <h1>User Profile</h1>
-                <hr>
-                <div class="img-container">
-                    <img src="{{ request.user.profile.image.url }}"
-                         class="prof-img">
-                </div>
+                foto
             </div>
         </div>
 
