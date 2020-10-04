@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.core.paginator import Paginator
 
 from .models import Product, Order, OrderItem
@@ -146,3 +146,9 @@ def remove_item(request, id):
         item.save()
 
     return redirect('cart')
+
+def product_details(request, id):
+    product = get_object_or_404(Product, pk=id)
+    context = {'product': product}
+
+    return render(request, 'store/product_details.html', context)
