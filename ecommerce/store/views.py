@@ -1,6 +1,8 @@
 from django.shortcuts import render, redirect
+from django.core.paginator import Paginator
 
 from .models import Product, Order, OrderItem
+from ecommerce import settings
 
 
 def home(request):
@@ -34,7 +36,12 @@ def cart(request):
 
 def store(request):
     products = Product.objects.all()
-    context = {'products': products}
+
+    paginator = Paginator(products, settings.PRODUCTS_PER_PAGE)
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)
+
+    context = {'products': products, 'page_obj': page_obj}
 
     return render(request, 'store/store.html', context)
 
