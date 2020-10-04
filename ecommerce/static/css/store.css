@@ -78,3 +78,8 @@
     background-color: #222629 !Important;
     border: solid 1px #222629 !Important;
 }
+
+.detail-img {
+    height: 400px;
+    width: 100%;
+}

@@ -3,9 +3,21 @@
 
 {% block content %}
 <div class="container">
-    <div class="row">
+    <div class="row justify-content-center" style="padding-top: 20px;">
+        <div class="row box-element" style="width:100%; padding: 35px 20px 35px 20px">
+            <div class="col-md-6">
+                <img class="detail-img" src="{{ product.image_url }}">
+            </div>
 
-       <h1>{{product.name}}</h1>
+             <div class="col-md-6">
+                 <h1>{{ product.name }}</h1>
+                 <h4 style="color: #86C232">${{ product.price }}</h4>
+                 <hr>
+<!--                 wybor ilosci form -->
+<!--                 dodaj do koszyka form -->
+<!--                 powrot do sklepu-->
+            </div>
+        </div>
 
     </div>
 
