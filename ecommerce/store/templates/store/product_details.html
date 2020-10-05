@@ -10,12 +10,35 @@
             </div>
 
              <div class="col-md-6">
-                 <h1>{{ product.name }}</h1>
-                 <h4 style="color: #86C232">${{ product.price }}</h4>
-                 <hr>
-<!--                 wybor ilosci form -->
-<!--                 dodaj do koszyka form -->
-<!--                 powrot do sklepu-->
+                 <div class="details-row" style="height: 120px;">
+                    <h1>{{ product.name }}</h1>
+                    <h4 style="color: #86C232">${{ product.price }}</h4>
+                 </div>
+
+                 <div class="details-row" style="height: 140px;">
+                     <p>Aenean dictumdictumdictumr velit eget porttitor. Pellentlamcorper velit eget porttitor. Pellentlamcorper velit eget porttitor. Pellentesque quis pretium nisi. Donec ex ante, pharetra eget sem non, volutpat congue ipsum.</p>
+                 </div>
+
+                 <div class="details-row" style="height: 40px">
+                    <form method="POST" class="form-inline" action="{% url 'update_cart' product.id %}">
+                     {% csrf_token %}
+                        <div class="form-group">
+                            <select class="custom-select" id="quantity" name="quantity">
+                            {% for i in '123456789'|make_list %}
+                              <option value="{{ forloop.counter }}">{{ forloop.counter }}</option>
+                            {% endfor %}
+                          </select>
+                        </div>
+                        <div class="form-group" style="width: 90%">
+                            <button type="submit" class="btn btn-secondary btn-block">Add to cart</button>
+                        </div>
+                    </form>
+                 </div>
+
+                 <div style="height: 100px; display: table-cell; vertical-align: bottom;">
+                     <a class="btn my-btn btn-block" href="{% url 'store' %}">Back to store</a>
+                 </div>
+
             </div>
         </div>
 
@@ -23,3 +46,27 @@
 
 </div>
 {% endblock %}
+
+<!--<div class="input-group" style="width: 12%; float: left;">-->
+<!--                      <select class="custom-select" id="inputGroupSelect04" aria-label="Example select with button addon">-->
+<!--                        {% for i in '123456789'|make_list %}-->
+<!--                          <option value="1">{{ forloop.counter }}</option>-->
+<!--                        {% endfor %}-->
+<!--                      </select>-->
+<!--                      <div class="input-group" style="width: 85%">-->
+<!--                        <submit class="btn btn-outline-secondary" type="button">Button</submit>-->
+<!--                      </div>-->
+<!--                    </div>-->
+
+
+<!--    <h1>{{ product.name }}</h1>-->
+<!--                     <h4 style="color: #86C232">${{ product.price }}</h4>-->
+
+                     <hr>
+                 <div style="display: table-cell; height:30px;">
+
+                 </div>
+
+<!--                 <hr>-->
+                 <div style="display: table-cell; height:40px; vertical-align:bottom;">
+                 </div>

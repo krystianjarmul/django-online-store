@@ -53,7 +53,7 @@
 
 .quantity{
 	display: inline-block;
-	font-weight: 700;
+    float: left;
 }
 
 .pagination > li > a
@@ -82,4 +82,9 @@
 .detail-img {
     height: 400px;
     width: 100%;
+}
+
+.details-row {
+    height: 120px;
+    display: table-row;
 }

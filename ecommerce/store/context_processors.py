@@ -6,7 +6,7 @@ def products_in_cart(request):
         cart = request.session.get('cart', {})
         items = [OrderItem(product=Product.objects.get(pk=int(id)),
                            quantity=quantity) for id, quantity in cart.items()]
-        cart_items = sum([item.quantity for item in items])
+        cart_items = sum([int(item.quantity) for item in items])
 
         return {'products_in_cart': cart_items}
 
