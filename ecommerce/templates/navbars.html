@@ -1,26 +1,20 @@
 {% load static %}
 
-<div class="navbar navbar-expand-sm my-component">
-    <div class="col-md-4">
-    </div>
-    <div class="col-md-4 text-center">
-        <a class="navbar-brand" href="{% url 'home' %}">
-            <figure>
-                <img src="{% static 'images/logo.png' %}"
-                     class="d-inline-block align-top" alt="">
+
+<nav class="navbar my-component justify-content-center">
+    <div style="margin-top: -20px;">
+        <a class="navbar-brand" href="#">
+            <figure style="margin: -30px 0 -30px 0;">
+                <img src="{% static 'images/logo.png' %}" alt="" class="d-inline-block align-top">
             </figure>
         </a>
     </div>
-    <!--    <button class="justify-content-end navbar-toggler" type="button"-->
-    <!--            data-toggle="collapse"-->
-    <!--            data-target="#navbarSupportedContent">-->
-    <!--        <i id="toggler-icon" class="fas fa-bars"></i>-->
-    <!--    </button>-->
-    <div class="col-md-4">
 
-        <!--        <div class="collapse navbar-collapse justify-content-end"-->
-        <!--             id="navbarSupportedContent">-->
-        <ul class="nav justify-content-end" id="list">
+    <div>
+        <ul class="nav" id="list">
+            <li class="nav-item rounded">
+                <a class="nav-link active" href="{% url 'store' %}">Products</a>
+            </li>
             {% if request.user.is_authenticated %}
             <li class="nav-item">
                 <a class="nav-link text-white">Hello, {{ request.user }}</a>
@@ -52,21 +46,9 @@
                 </a>
             </li>
         </ul>
-        <!--        </div>-->
     </div>
-
-</div>
-
-
 </nav>
-<!--<hr>-->
-<nav class="navbar my-component justify-content-center">
-    <ul class="nav">
-        <li class="nav-item rounded">
-            <a class="nav-link active" href="{% url 'store' %}">Products</a>
-        </li>
-        <li class="nav-item rounded">
-            <a class="nav-link" href="{% url 'checkout' %}">Checkout</a>
-        </li>
-    </ul>
-</nav>
+
+
+
+
