@@ -67,8 +67,9 @@ a:hover {
 }
 
 .container {
+    padding-top: 40px;
     vertical-align: middle;
-    margin-top: 25px;
+    /*margin-top: 25px;*/
     margin-bottom: 50px;
     min-height: 45%;
 }
