@@ -34,7 +34,11 @@ figure {
 figure img {
     display: block;
     width: 100%;
-    /*margin: -20% 0;*/
+}
+
+.logo {
+    height: 20px;
+    width: 100px;
 }
 
 .my-btn {
