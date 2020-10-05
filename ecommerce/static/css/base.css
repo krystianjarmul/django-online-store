@@ -70,7 +70,6 @@ a:hover {
     vertical-align: middle;
     /*margin-top: 25px;*/
     margin-bottom: 50px;
-
 }
 
 textarea, input {
@@ -112,6 +111,7 @@ html, body {
   min-height: 100%;
   /* equal to footer height */
   margin-bottom: -50px;
+
 }
 .container:after {
   content: "";
@@ -119,4 +119,8 @@ html, body {
 }
 .footer, .container:after {
   height: 80px;
+}
+
+.slide {
+    max-height: 700px;
 }
