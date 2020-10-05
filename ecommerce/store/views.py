@@ -1,3 +1,4 @@
+from django.http import HttpResponseRedirect
 from django.shortcuts import render, redirect, get_object_or_404
 from django.core.paginator import Paginator
 
@@ -86,7 +87,7 @@ def update_cart(request, id):
         else:
             request.session['cart'][str(id)] += quantity
 
-        return redirect('store')
+        return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
 
     customer = request.user.customer
     order = customer.order_set.first()

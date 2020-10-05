@@ -6,20 +6,19 @@ p {
     color: white;
 }
 
-.footer {
-    background-color: black;
-    position: relative;
-    bottom: 0;
-    left: 0;
-    height: 80px;
-    width: 100%;
-    padding-top: 20px;
-}
 
-html, body {
+html {
     background-color: #33373A;
     /*background-color: #222629;*/
     height: 100%;
+}
+
+body {
+     background-color: #33373A;
+    /*background-color: #222629;*/
+    min-height: 100%;
+    /*display: flex;*/
+    /*flex-direction: column;*/
 }
 
 figure {
@@ -66,11 +65,12 @@ a:hover {
 }
 
 .container {
+    min-height: 50%;
     padding-top: 40px;
     vertical-align: middle;
     /*margin-top: 25px;*/
     margin-bottom: 50px;
-    min-height: 45%;
+
 }
 
 textarea, input {
@@ -91,7 +91,32 @@ textarea, input {
 }
 
 hr {
-    /*background-color: #6B6E70;*/
     background-color: #33373A;
+}
 
+.footer {
+    height: 80px;
+    width: 100%;
+    margin-top: auto;
+    padding-top: 26px;
+    clear:both;
+}
+
+* {
+  margin: 0;
+}
+html, body {
+  height: 88%;
+}
+.container {
+  min-height: 100%;
+  /* equal to footer height */
+  margin-bottom: -50px;
+}
+.container:after {
+  content: "";
+  display: block;
+}
+.footer, .container:after {
+  height: 80px;
 }
