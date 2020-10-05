@@ -1,5 +1,5 @@
 .thumbnail {
-    height: 200px;
+    height: 250px;
     width: 100%;
     margin-top: 30px;
 }
@@ -53,7 +53,7 @@
 
 .quantity{
 	display: inline-block;
-	font-weight: 700;
+    float: left;
 }
 
 .pagination > li > a
@@ -77,4 +77,14 @@
 .page-link {
     background-color: #222629 !Important;
     border: solid 1px #222629 !Important;
+}
+
+.detail-img {
+    height: 400px;
+    width: 100%;
+}
+
+.details-row {
+    height: 120px;
+    display: table-row;
 }

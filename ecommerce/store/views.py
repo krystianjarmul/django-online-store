@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.core.paginator import Paginator
 
 from .models import Product, Order, OrderItem
@@ -24,8 +24,8 @@ def cart(request):
         cart = request.session.get('cart', {})
         items = [OrderItem(product=Product.objects.get(pk=int(id)),
                            quantity=quantity) for id, quantity in cart.items()]
-        cart_items = sum([item.quantity for item in items])
-        cart_total = sum([item.product.price * item.quantity for item in items])
+        cart_items = sum([int(item.quantity) for item in items])
+        cart_total = sum([item.product.price * int(item.quantity) for item in items])
 
         order = {'get_cart_items': cart_items, 'get_cart_total': cart_total}
 
@@ -70,15 +70,21 @@ def checkout(request):
 
 
 def update_cart(request, id):
+    if request.method == 'POST':
+        quantity = request.POST.get('quantity')
+        quantity = int(quantity)
+    else:
+        quantity = 1
+
     if not request.user.is_authenticated:
         request.session.modified = True
         if not request.session.get('cart'):
             request.session['cart'] = {}
 
         if str(id) not in request.session.get('cart', {}):
-            request.session['cart'][str(id)] = 1
+            request.session['cart'][str(id)] = quantity
         else:
-            request.session['cart'][str(id)] += 1
+            request.session['cart'][str(id)] += quantity
 
         return redirect('store')
 
@@ -87,11 +93,11 @@ def update_cart(request, id):
     product = Product.objects.get(pk=id)
 
     if product.orderitem_set.first() not in order.orderitem_set.all():
-        item = OrderItem(order=order, quantity=1, product=product)
+        item = OrderItem(order=order, quantity=quantity, product=product)
         item.save()
     else:
         item = OrderItem.objects.get(order=order, product=product)
-        item.quantity += 1
+        item.quantity += quantity
         item.save()
 
     return redirect('store')
@@ -146,3 +152,10 @@ def remove_item(request, id):
         item.save()
 
     return redirect('cart')
+
+def product_details(request, id):
+    product = get_object_or_404(Product, pk=id)
+
+    context = {'product': product}
+
+    return render(request, 'store/product_details.html', context)

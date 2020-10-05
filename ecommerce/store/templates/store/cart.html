@@ -40,7 +40,7 @@
                         <div class="row quantity">
                             <a data-product="{{ item.product.id }}" data-action="sub" class="btn btn-sm btn-secondary update-cart" href="{% url 'remove_item' item.product.id %}">-</a>
                             <strong class="col-6">{{ item.quantity }}</strong>
-                            <a data-product="{{ item.product.id }}" data-action="add" class="btn btn-sm btn-secondary col-3 update-cart" href="{% url 'add_item' item.product.id %}">+</a>
+                            <a data-product="{{ item.product.id }}" style="width: 23px" data-action="add" class="btn btn-sm btn-secondary col-3 update-cart" href="{% url 'add_item' item.product.id %}">+</a>
                         </div>
                     </div>
                     <div style="flex: 1;">${{ item.get_total|floatformat:2 }}</div>
